@@ -53,6 +53,7 @@ export default class App extends Component{
               component={Add_profile}
               title="Add_profile"
               key="Add_profile"
+
               />
 
               <Scene hideNavBar hideTabBar

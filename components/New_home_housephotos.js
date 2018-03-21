@@ -22,7 +22,7 @@ export default class New_home_housephotos extends Component{
 
         <View style={{flex:0.13,backgroundColor:'rgb(68, 35, 124)',flexDirection:'row'}}>
           <View style={{flex:0.8}}>
-            <Text style={{ fontFamily:"FaktProSoft",fontSize: 22,textAlign:'right', color:'white',padding:26}}>Create a new Home</Text>
+            <Text style={{ fontFamily:"times new roman",fontSize: 22,textAlign:'right', color:'white',padding:26}}>Create a new Home</Text>
           </View>
           <View style={{flex:0.2}}>
               <Icon name='times' style={{color:'white', fontSize:20,padding:28,marginTop:3}} onPress={()=>Actions.popTo('New_home_housemates')}/>
@@ -31,27 +31,28 @@ export default class New_home_housephotos extends Component{
 
         <View style={{flex:0.28 ,marginTop:20,flexDirection:'column'}}>
               <View style={{flex:0.13}}>
-                  <Text style={{fontFamily:"FaktProSoft",fontSize: 19,fontWeight:'bold',textAlign:'center', color:'rgb(68, 35, 124)'}}>House photos</Text>
+                  <Text style={{fontFamily:"times new roman",fontSize: 19,fontWeight:'bold',textAlign:'center', color:'rgb(68, 35, 124)'}}>House photos</Text>
               </View>
               <View style={{flex:0.13}}>
-                <Text style={{fontFamily:"FaktProSoft",fontSize: 15.5,textAlign:'center', color:'gray',padding:7}}>Show us your home and lovely faces</Text>
+                <Text style={{fontFamily:"times new roman",fontSize: 15.5,textAlign:'center', color:'gray',padding:7}}>Show us your home and lovely faces</Text>
               </View>
               <View style={{flex:0.74,backgroundColor:'#f7f6f6',marginTop:10}}>
                 <TouchableHighlight>
                   <Image source={require('../Images/house_photos.png')} style={{height:height*0.183,width:width,resizeMode:'stretch',position:'relative'}}  />
                 </TouchableHighlight>
-                <Icon name='plus' style={{color:'rgb(68, 35, 124)', fontSize:30,position:'absolute',marginLeft:width*0.824,marginTop:height*0.107}}  onPress={()=>Actions.Add_room()}/>
+                <Icon name='plus' style={{color:'rgb(68, 35, 124)', fontSize:30,position:'absolute',marginLeft:width*0.824,marginTop:height*0.107}}/>
               </View>
         </View>
 
         <View style={{flex:0.59,flexDirection:'column'}}>
+
           <View style={{flex:0.05}}></View>
           <View style={{flex:0.6,flexDirection:'row'}}>
             <View style={{flex:0.35}}></View>
             <View style={{flex:0.4,flexDirection:'column'}}>
               <View style={{flex:0.3}}></View>
               <View style={{flex:0.5}}>
-                <TouchableOpacity onPress={()=>Actions.Add_room()} >
+                <TouchableOpacity>
                   <Image source={require('../Images/real.png')} style={{height:height*0.18,width:width*0.4,resizeMode:'stretch',position:'relative'}}  />
                 </TouchableOpacity>
               </View>

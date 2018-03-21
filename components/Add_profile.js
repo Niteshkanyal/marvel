@@ -18,57 +18,38 @@ import {Actions} from 'react-native-router-flux'
 
 export default class Rooms extends Component{
   state = {
-      name:'suraj',
-      age:'24',
+      name:'',
+      age:'',
+      pic:'',
+      person:[],
    }
-   componentDidMount = () =>{
-     AsyncStorage.getItem('data', (value) => {
-     console.log(JSON.parse(value))
-     this.setState({'name':did.name,'age':did.age})
 
-   });
-    // AsyncStorage.getItem('name').then((value)  => this.setState({ 'name': value }))
-    // AsyncStorage.getItem('age').then((value)  => this.setState({ 'age': value }))
-  }
-  componentWillMount=()=>{
- //   Rooms.count=1
-    // var data=''detail'+count';
-    val={
-         name:this.state.name,
-         age:this.state.age,
+    async componentDidMount()
+    {
+           let response = await AsyncStorage.getItem('person');
+           let listOfTasks = await JSON.parse(response) || [];
+           this.setState({person:listOfTasks});
     }
-    console.log(val);
-    try {
-    AsyncStorage.setItem('data',JSON.stringify(val));
-  }catch(err){
-    console.log("err : ",err);
-  }
 
+  call =()=>{
 
-
-  }
-   call =()=>{
-  //   Rooms.count=1
-     // var data=''detail'+count';
-     val={
-          name:this.state.name,
-          age:this.state.age,
+     const person = [...this.state.person,
+     {
+       name:this.state.name,
+       age:this.state.age,
+       pic:this.state.pic,
+     } ];
+     if((this.state.age=='')||(this.state.name==''))
+     {
+       alert('Make sure You will fill all fields')
      }
-     console.log(val);
-     try {
-      AsyncStorage.setItem('data',JSON.stringify(val));
-   }catch(err){
-     console.log("err : ",err);
+     else{
+       AsyncStorage.setItem('person', JSON.stringify(person));
+       Actions.New_home_housemates()
+       // console.log(person)
+     }
    }
- try {
-  AsyncStorage.getItem('data', (value) => {
-   console.log("values : ",value);
- });
- }catch(err){
-   console.log("err : ",err);
- }
 
-   }
    setName = (value) => {
       this.setState({name: value });
    }
@@ -89,7 +70,7 @@ export default class Rooms extends Component{
                      <Icon name='arrow-left' style={{color:'white', fontSize:20,padding:28,marginTop:3}}onPress={()=>Actions.pop()}/>
                  </View>
                  <View style={{flex:0.8}}>
-                   <Text style={{ fontFamily:"FaktProSoft",fontSize: 22,textAlign:'left', color:'white',padding:26,marginLeft:10}}>Add a new person</Text>
+                   <Text style={{ fontFamily:"times new roman",fontSize: 22,textAlign:'left', color:'white',padding:26,marginLeft:10}}>Add a new person</Text>
                  </View>
                </View>
                <View style={{flex:0.03 ,backgroundColor:'#f7f6f6',marginTop:10}}></View>
@@ -106,8 +87,8 @@ export default class Rooms extends Component{
                  <View style={{flex:0.3,flexDirection:'column'}}>
                    <View style={{flex:0.4}}></View>
                    <View style={{flex:0.6,flexDirection:'row',marginTop:10}}>
-                     <View style={{flex:0.5}}><Text style={{fontSize:20,color:'#535353',marginLeft:35}}>Name</Text></View>
-                     <View style={{flex:0.5}}><Text style={{fontSize:20,color:'#535353',marginLeft:35}}>Age</Text></View>
+                     <View style={{flex:0.5}}><Text style={{fontSize:20,color:'#535353',marginLeft:35}}><Text style={{color:'red'}}>*</Text>Name</Text></View>
+                     <View style={{flex:0.5}}><Text style={{fontSize:20,color:'#535353',marginLeft:35}}><Text style={{color:'red'}}>*</Text>Age</Text></View>
                    </View>
                    </View>
                </View>
@@ -116,7 +97,7 @@ export default class Rooms extends Component{
 
                  <View style={{flex:0.2 ,flexDirection:'row'}}>
                    <View style={{flex:0.5}}>
-                     <TextInput style={{ fontSize:18,marginLeft:33}} placeholder='Nitesh' underlineColorAndroid = "transparent" onChangeText = {this.setName}/>
+                     <TextInput style={{ fontSize:18,marginLeft:33}} placeholder='Don' underlineColorAndroid = "transparent" onChangeText = {this.setName}/>
                    </View>
                    <View style={{flex:0.5}}>
                      <TextInput style={{ fontSize:18,marginLeft:35}} placeholder='21'  keyboardType='numeric' underlineColorAndroid = "transparent" onChangeText = {this.setAge}/>
